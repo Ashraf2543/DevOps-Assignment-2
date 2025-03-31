@@ -13,8 +13,4 @@ testcases = [
 def test_api(url, expected, description):
     response = requests.get(url)
     result = response.json()["result"]
-<<<<<<< HEAD
     assert result == expected, f"{description}. Expected {expected}, got {result}"
-=======
-    assert result == expected, f"{description}. Expected {expected}, got {result}"
->>>>>>> 8b154e4e1d915873d7e3c2417d2e53d074f27c1f
