@@ -80,43 +80,21 @@ This project demonstrates setting up a FastAPI backend, automating API testing u
 ```yaml
 name: API Tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
-
+          python-version: '3.9'
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install fastapi uvicorn pytest requests
-
-      - name: Start FastAPI server
-        run: |
-          nohup python apiserver.py &
-        env:
-          PYTHONUNBUFFERED: 1
-
-      - name: Wait for server to be ready
-        run: sleep 5
-
-      - name: Run tests
-        run: pytest testAutomationPytest.py
+        run: pip install -r requirements.txt
+      - name: Run Pytest
+        run: pytest
 ```
 
 ---
